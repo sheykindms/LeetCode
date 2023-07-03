@@ -13,6 +13,9 @@ class Solution {
     // [0, 0, 1]
     // [1, 0, 0]
 
+    // [1, 0, 1]
+    // [1, 1, 0]
+
     public void moveZeroes(int[] nums) {
         int i = 0;
         for(int num: nums) {
@@ -23,6 +26,28 @@ class Solution {
         }
         while(i < nums.length) {
             nums[i] = 0;
+            i++;
+        }
+    }
+
+}
+```
+
+```java
+class Solution {
+
+    public void moveZeroes(int[] nums) {
+        int i = 1;
+        int j = 0;
+        while(i < nums.length) {
+            if(nums[j] == 0 && nums[i] != 0) {
+                int temp = nums[i];
+                nums[i] = 0;
+                nums[j] = temp;
+                j++;
+            } else if (nums[j] != 0) {
+                j++;
+            }
             i++;
         }
     }

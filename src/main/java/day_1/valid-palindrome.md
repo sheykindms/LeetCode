@@ -14,15 +14,14 @@ class Solution {
     // true
 
     public boolean isPalindrome(String s) {
-        String lowercase = s.toLowerCase();
         int start = 0;
         int end = s.length() - 1;
         while(start < end) {
-            if(!Character.isLetterOrDigit(lowercase.charAt(start))) {
+            if(!Character.isLetterOrDigit(s.charAt(start))) {
                 start++;
-            } else if(!Character.isLetterOrDigit(lowercase.charAt(end))) {
+            } else if(!Character.isLetterOrDigit(s.charAt(end))) {
                 end--;
-            } else if (lowercase.charAt(start) != lowercase.charAt(end)) {
+            } else if (Character.toLowerCase(s.charAt(start)) != Character.toLowerCase(s.charAt(end))) {
                 return false;
             } else {
                 start++;
