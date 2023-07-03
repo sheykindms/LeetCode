@@ -37,9 +37,8 @@ class Solution {
 class Solution {
 
     public void moveZeroes(int[] nums) {
-        int i = 1;
         int j = 0;
-        while(i < nums.length) {
+        for(int i = 1; i < nums.length; i++) {
             if(nums[j] == 0 && nums[i] != 0) {
                 int temp = nums[i];
                 nums[i] = 0;
@@ -48,9 +47,7 @@ class Solution {
             } else if (nums[j] != 0) {
                 j++;
             }
-            i++;
         }
     }
-
 }
 ```
