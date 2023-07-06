@@ -4,24 +4,19 @@ https://leetcode.com/problems/valid-parentheses/
 
 ```java
 class Solution {
-    // s = "()"
-    // true
-    
-    // s = "()[]{}"
-    // true
-    
-    // s = "(]"
-    // false
-    
     public boolean isValid(String s) {
-        Stack<Character> stack = new Stack<>();
+        Map<Character, Character> brackets = new HashMap<>();
+        brackets.put('}', '{');
+        brackets.put(')', '(');
+        brackets.put(']', '[');
+        Deque<Character> stack = new ArrayDeque<>();
         for(char c : s.toCharArray()) {
             if(c == '{' || c == '[' || c == '(') {
                 stack.push(c);
             }
             else if(stack.isEmpty()) {
                 return false;
-            } else if(c == '}' && stack.peek() == '{' || c == ']' && stack.peek() == '[' || c == ')' && stack.peek() == '(') {
+            } else if(stack.peekFirst() == brackets.get(c)) {
                 stack.pop();
             } else {
                 return false;

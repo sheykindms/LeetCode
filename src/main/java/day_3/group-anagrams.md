@@ -16,31 +16,21 @@ class Solution {
 
 
     public List<List<String>> groupAnagrams(String[] strs) {
-        String[] strsSorted = new String[strs.length];
-        for(int i = 0; i < strs.length; i++) {
-            char[] temp = strs[i].toCharArray();
-            Arrays.sort(temp);
-            strsSorted[i] = new String(temp);
-        }
-        List<List<String>> res = new ArrayList<>();
-        for(int i = 0; i < strs.length; i++) {
-            List<String> group = new ArrayList<>();
-            if(strsSorted[i] != null) {
-                group.add(strs[i]);
-                for(int j = 0; j < strs.length; j++) {
-                    if(strsSorted[i].equals(strsSorted[j]) && strsSorted[j] != null && i != j) {
-                        group.add(strs[j]);
-                        strsSorted[j] = null;
-                    }
-                }
-                strsSorted[i] = null;
-                if(!group.isEmpty()) {
-                    res.add(group);
-                }
-            }
-        }
-        return res;
+        Map<String, List<String>> map = new HashMap<>();
 
+        for (String str : strs) {
+            String key = computeKey(str);
+            List<String> list = map.getOrDefault(key, new ArrayList<>());
+            list.add(str);
+            map.put(key, list);
+        }
+        return List.copyOf(map.values());
+    }
+
+    public String computeKey(String s) {
+        char[] chars = s.toCharArray();
+        Arrays.sort(chars);
+        return new String(chars);
     }
 }
 ```
