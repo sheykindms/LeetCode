@@ -4,6 +4,15 @@ https://leetcode.com/problems/valid-parentheses/
 
 ```java
 class Solution {
+    // "()"
+    // true
+    
+    // "()[]{}"
+    // true
+    
+    // "(]"
+    // false
+    
     public boolean isValid(String s) {
         Map<Character, Character> brackets = new HashMap<>();
         brackets.put('}', '{');
@@ -11,15 +20,10 @@ class Solution {
         brackets.put(']', '[');
         Deque<Character> stack = new ArrayDeque<>();
         for(char c : s.toCharArray()) {
-            if(c == '{' || c == '[' || c == '(') {
-                stack.push(c);
-            }
-            else if(stack.isEmpty()) {
-                return false;
-            } else if(stack.peekFirst() == brackets.get(c)) {
+            if(brackets.containsKey(c) && stack.peek() == brackets.get(c)) {
                 stack.pop();
             } else {
-                return false;
+                stack.push(c);
             }
         }
         return stack.isEmpty();

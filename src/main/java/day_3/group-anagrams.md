@@ -4,7 +4,6 @@ https://leetcode.com/problems/group-anagrams/
 
 ```java
 class Solution {
-
     // ["eat","tea","tan","ate","nat","bat"]
     // [["bat"],["nat","tan"],["ate","eat","tea"]]
 
@@ -20,9 +19,10 @@ class Solution {
 
         for (String str : strs) {
             String key = computeKey(str);
-            List<String> list = map.getOrDefault(key, new ArrayList<>());
-            list.add(str);
-            map.put(key, list);
+            if (!map.containsKey(key)) {
+                map.put(key, new ArrayList<>());
+            }
+            map.get(key).add(str);
         }
         return List.copyOf(map.values());
     }
