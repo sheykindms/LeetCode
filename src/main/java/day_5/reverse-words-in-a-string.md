@@ -11,7 +11,7 @@ class Solution {
     // "example good a"
 
     public String reverseWords(String s) {
-        int start = 0;
+        int start;
         List<String> words = new ArrayList<>();
         for(int i  = 0; i < s.length(); i++) {
             if(s.charAt(i) != ' ') {
